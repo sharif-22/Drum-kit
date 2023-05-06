@@ -1,5 +1,7 @@
 // dom
 const drumSetEl = document.querySelector(".drum-set");
+const notificationEl = document.querySelector(".notification");
+
 const drumSetElChild = drumSetEl.children;
 
 let drumTypes = [
@@ -26,6 +28,17 @@ drumTypes.forEach((element, index) => {
   style.backgroundImage = `url(./assets/images/${element.drumtype}.png)`;
 });
 
+// notifying user to use keyboard
+if (document.body.scrollWidth >= 1280) {
+  console.dir(notificationEl);
+  // displaying notification in destop
+  notificationEl.classList.remove("d-none");
+  // removing notification later 5s
+  setInterval(() => {
+    notificationEl.classList.add("d-none");
+  }, 5000);
+}
+
 // events
 
 // click event
@@ -47,7 +60,7 @@ drumSetEl.addEventListener("click", (e) => {
 // keyboard event
 document.body.addEventListener("keydown", (e) => {
   let code = e.code;
-  console.log(code);
+  // console.log(code);
   drumTypes.findIndex((element) => {
     // console.log(element.code);
     if (code === element.code) {
